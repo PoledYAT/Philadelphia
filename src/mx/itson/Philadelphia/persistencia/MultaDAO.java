@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.criteria.CriteriaQuery;
+import mx.itson.Philadelphia.entidades.Conductor;
 import mx.itson.Philadelphia.entidades.Multa;
+import mx.itson.Philadelphia.entidades.Oficial;
 import mx.itson.Philadelphia.utilerias.HibernateUtil;
 import org.hibernate.HibernateException;
 
@@ -44,7 +46,7 @@ public class MultaDAO {
     }
     
     
-    public static boolean guardar(String folio, String motivo, Date fecha){
+    public static boolean guardar(String folio, String motivo, Date fecha, Conductor  conductor, Oficial oficial){
         boolean resultado = false;
         
         try{
@@ -57,6 +59,8 @@ public class MultaDAO {
             m.setFolio(folio);
             m.setMotivo(motivo);
             m.setFecha(fecha);
+            m.setConductor(conductor);
+            m.setOficial(oficial);
 
             session.save(m);
             
@@ -70,6 +74,8 @@ public class MultaDAO {
         }
         return resultado;
     }
+    
+    
     public Multa obtenerPorId(int id){
         Multa multa = null;
         
@@ -84,7 +90,7 @@ public class MultaDAO {
      return multa;   
     }
     
-     public boolean editar(int id, String folio, String motivo, Date fecha){
+     public boolean editar(int id, String folio, String motivo, Date fecha, Conductor conductor, Oficial oficial){
         
         boolean resultado = false;
         try{
@@ -98,6 +104,8 @@ public class MultaDAO {
                 multa.setFolio(folio);
                 multa.setMotivo(motivo);
                 multa.setFecha(fecha);
+                multa.setConductor(conductor);
+                multa.setOficial(oficial);
                 
                 
                 session.saveOrUpdate(multa);

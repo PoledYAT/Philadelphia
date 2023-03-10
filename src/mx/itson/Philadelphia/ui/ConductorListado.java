@@ -164,9 +164,7 @@ public class ConductorListado extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // Mostrar una confirmación al usuario preguntano si está seguro que desea eliminar.
-        // Si confirma, se elimina el registro y se actualiza la tabla.
-        
+
         int E = JOptionPane.showConfirmDialog(this, "Estas seguro de eliminar los datos de Conductor?","estas Seguro?", JOptionPane.YES_NO_OPTION);
                 
         if(E == 0){

@@ -8,7 +8,9 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import mx.itson.Philadelphia.entidades.Conductor;
 import mx.itson.Philadelphia.entidades.Multa;
+import mx.itson.Philadelphia.entidades.Oficial;
 import mx.itson.philadelphia.persistencia.MultaDAO;
 
 /**
@@ -21,6 +23,8 @@ public class MultaListado extends javax.swing.JFrame {
     String folio;
     String motivo;
     String fecha;
+    Conductor conductor;
+    Oficial oficial;
     SimpleDateFormat formato = new SimpleDateFormat("d 'de' MMMM 'de' yyyy");
 
     /**
@@ -151,12 +155,13 @@ public class MultaListado extends javax.swing.JFrame {
         
         
         
-       MultaFormulario formulario = new MultaFormulario(this, true, id, folio, motivo, fecha);
+        
+       MultaFormulario formulario = new MultaFormulario(this, true, id, folio, motivo, fecha, conductor, oficial);
        formulario.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        MultaFormulario formulario = new MultaFormulario(this, true, id, folio, motivo, fecha);
+        MultaFormulario formulario = new MultaFormulario(this, true, id, folio, motivo, fecha, conductor, oficial);
        
         formulario.setVisible(true);
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -167,11 +172,13 @@ public class MultaListado extends javax.swing.JFrame {
                 
         if(E == 0){
         DefaultTableModel modelo = (DefaultTableModel) tblMulta.getModel();
+        
         int fila = tblMulta.getSelectedRow();
         int id = Integer.parseInt(modelo.getValueAt(fila,0).toString());
         
         boolean operacion = false;
         try{
+            
         MultaDAO multaDAO = new MultaDAO();
         operacion = multaDAO.eliminar(id);
         
@@ -185,10 +192,11 @@ public class MultaListado extends javax.swing.JFrame {
         }else{
         JOptionPane.showMessageDialog(this, "No se ha pudido eliminar","Operacion fallida", JOptionPane.WARNING_MESSAGE);
         
+        }
+        
         this.dispose();
            MultaListado frame = new MultaListado();
             frame.setVisible(true);
-        }
     }
                             
     }//GEN-LAST:event_btnEliminarActionPerformed

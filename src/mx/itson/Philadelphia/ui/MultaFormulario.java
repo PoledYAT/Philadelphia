@@ -26,13 +26,15 @@ public class MultaFormulario extends javax.swing.JDialog {
     String folio;
     String motivo;
     String fecha;
+    Conductor conductor;
+    Oficial oficial;
     SimpleDateFormat formato = new SimpleDateFormat("d 'de' MMMM 'de' yyyy");
     
 
     /**
      * Creates new form MultaFormulario
      */
-    public MultaFormulario(java.awt.Frame parent, boolean modal, int id, String folio, String motivo, String fecha) {
+    public MultaFormulario(java.awt.Frame parent, boolean modal, int id, String folio, String motivo, String fecha, Conductor conductor, Oficial oficial) {
         super(parent, modal);
         initComponents();
         
@@ -40,6 +42,9 @@ public class MultaFormulario extends javax.swing.JDialog {
         this.folio = folio;
         this.motivo = motivo;
         this.fecha = fecha;
+        this.conductor = conductor;
+        this.oficial = oficial;
+    
         
         cargarFormulario();
         
@@ -52,6 +57,9 @@ public class MultaFormulario extends javax.swing.JDialog {
         txtFolio.setText(folio);
         txtMotivo.setText(motivo);
         txtFecha.setText(fecha);
+        cmbConductor.addItem(conductor);
+        cmbOficial.addItem(oficial);
+      
        
     }
     
@@ -187,19 +195,12 @@ public class MultaFormulario extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        Conductor c = (Conductor)cmbConductor.getSelectedItem();
-        System.out.println("El conductor selccionado es " + c.getId() + " de nombre " + c.getNombre());
-        
-        //
-        
-        Oficial o = (Oficial)cmbOficial.getSelectedItem();
-        System.out.println("El conductor selccionado es " + o.getId() + " de nombre " + o.getNombre());
-        
-        //
-        
+    
         String folio = txtFolio.getText();
         String motivo = txtMotivo.getText();
         String fecha = txtFecha.getText();
+        Conductor conductor = (Conductor) cmbConductor.getSelectedItem();
+        Oficial oficial = (Oficial)cmbOficial.getSelectedItem();
         Date fechaConvertida = null;
         
         try { 
@@ -212,12 +213,12 @@ public class MultaFormulario extends javax.swing.JDialog {
         boolean operacion = false;
         
         if(this.id == 0 ){
-        operacion = MultaDAO.guardar(folio, motivo, fechaConvertida);
+        operacion = MultaDAO.guardar(folio, motivo, fechaConvertida, conductor, oficial);
                 
                
         }else{
         MultaDAO multaDAO = new MultaDAO();
-        operacion = multaDAO.editar(id, folio, motivo, fechaConvertida);
+        operacion = multaDAO.editar(id, folio, motivo, fechaConvertida, conductor, oficial);
         }
         
         if(operacion == true){
