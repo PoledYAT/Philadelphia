@@ -31,11 +31,11 @@ public class Multa {
     @Temporal(TemporalType.DATE)
     private Date fecha;
     
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="idConductor")
     private Conductor  conductor;
     
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="idOficial")
     private Oficial oficial;
 
