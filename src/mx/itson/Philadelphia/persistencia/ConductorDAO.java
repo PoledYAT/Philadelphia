@@ -77,7 +77,7 @@ public class ConductorDAO {
      * @param id obtener los datos del conductor 
      * @return retorna conductor de lo contrario retarna a null
      */
-    public Conductor obtenerPorId(int id){
+    public static Conductor obtenerPorId(int id){
         Conductor conductor = null;
         
         try{

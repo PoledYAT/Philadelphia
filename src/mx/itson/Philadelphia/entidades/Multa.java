@@ -23,7 +23,7 @@ import javax.persistence.TemporalType;
 public class Multa {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     private int id;
     private String folio;
     private String motivo;

@@ -152,7 +152,7 @@ public class MultaListado extends javax.swing.JFrame {
         String folio = modelo.getValueAt(fila, 1).toString();
         String motivo = modelo.getValueAt(fila, 2).toString();
         String fecha = modelo.getValueAt(fila, 3).toString();
-        
+      
         
         
         

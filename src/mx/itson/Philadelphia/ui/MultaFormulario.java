@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import mx.itson.Philadelphia.entidades.Conductor;
+import mx.itson.Philadelphia.entidades.Multa;
 import mx.itson.Philadelphia.entidades.Oficial;
 import mx.itson.Philadelphia.persistencia.ConductorDAO;
 import mx.itson.Philadelphia.persistencia.OficialDAO;
@@ -75,6 +76,7 @@ public class MultaFormulario extends javax.swing.JDialog {
         List<Conductor> conductores = ConductorDAO.obtenerTodos();
         for(Conductor c : conductores){
             cmbConductor.addItem(c);
+            
         }
     }
     
